@@ -1,4 +1,4 @@
-package com.example.weather.base
+package com.raju.codechallange.base
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.test.*

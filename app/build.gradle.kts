@@ -50,6 +50,8 @@ dependencies {
 
     // Hilt
     implementation(libs.hilt)
+    testImplementation("junit:junit:4.12")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
     ksp(libs.hilt.compiler)
 
     // Retrofit
@@ -65,4 +67,14 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    testImplementation(libs.androidx.junit)
+    testImplementation(libs.androidx.espresso.core.v340)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.truth)
+    testImplementation(libs.robolectric)
+    testImplementation(libs.turbine)
+    testImplementation(libs.mockk)
+    testImplementation(libs.mockwebserver)
+    testImplementation(libs.hamcrest.library)
 }

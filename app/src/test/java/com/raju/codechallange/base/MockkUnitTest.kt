@@ -1,4 +1,4 @@
-package com.example.weather.base
+package com.raju.codechallange.base
 
 import io.mockk.MockKAnnotations
 import io.mockk.clearAllMocks

@@ -1,13 +1,9 @@
-package com.example.weather.base
+package com.raju.codechallange.base
 
 import android.os.Build
-import androidx.annotation.RequiresApi
-import com.example.weather.data.model.CurrentWeather
-import com.example.weather.data.remote.factory.FlowCallAdapterFactory
-import com.example.weather.data.remote.interceptor.HeaderInterceptor
-import com.example.weather.data.remote.mapper.ExceptionMapper
-import io.mockk.impl.annotations.MockK
-import io.mockk.mockk
+import androidx.test.filters.SdkSuppress
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.mockwebserver.MockResponse
@@ -18,7 +14,7 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.util.stream.Collectors
@@ -28,7 +24,9 @@ abstract class BaseServiceTest<S : Any>(service: KClass<S>) {
 
     lateinit var mockWebServer: MockWebServer
     private lateinit var okhttp: OkHttpClient
-    private lateinit var flowCallAdapterFactory: FlowCallAdapterFactory
+    private val moshi = Moshi.Builder()
+        .add(KotlinJsonAdapterFactory())
+        .build()
 
     @get:Rule
     var testCoroutineRule = TestCoroutineRule()
@@ -41,8 +39,7 @@ abstract class BaseServiceTest<S : Any>(service: KClass<S>) {
         Retrofit.Builder()
             .client(okhttp)
             .baseUrl(baseUrl)
-            .addCallAdapterFactory(flowCallAdapterFactory)
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()
             .create(service)
     }
@@ -51,8 +48,7 @@ abstract class BaseServiceTest<S : Any>(service: KClass<S>) {
         Retrofit.Builder()
             .client(okhttp)
             .baseUrl(mockWebServer.url(""))
-            .addCallAdapterFactory(flowCallAdapterFactory)
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()
             .create(service)
     }
@@ -62,13 +58,10 @@ abstract class BaseServiceTest<S : Any>(service: KClass<S>) {
         mockWebServer = MockWebServer().apply {
             start()
         }
-        //val headerInterceptor = mockk<HeaderInterceptor>()
         okhttp = OkHttpClient.Builder()
             .followSslRedirects(true)
             .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .build()
-        val exceptionMapper = mockk<ExceptionMapper>(relaxed = true)
-        flowCallAdapterFactory = FlowCallAdapterFactory.create(exceptionMapper)
     }
 
     @After
@@ -94,7 +87,7 @@ abstract class BaseServiceTest<S : Any>(service: KClass<S>) {
 
     private fun <T : Any> Retrofit.create(service: KClass<T>): T = create(service.javaObjectType)
 
-    @RequiresApi(Build.VERSION_CODES.N)
+    @SdkSuppress(minSdkVersion = Build.VERSION_CODES.N)
     private fun getJson(fileName: String): String {
         val inputStream = javaClass.classLoader!!.getResourceAsStream(fileName)
         return BufferedReader(InputStreamReader(inputStream)).lines()
