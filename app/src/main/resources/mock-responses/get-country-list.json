@@ -1,0 +1,46 @@
+{
+  "coord": {
+    "lon": -122.3051,
+    "lat": 37.8391
+  },
+  "weather": [
+    {
+      "id": 501,
+      "main": "Rain",
+      "description": "moderate rain",
+      "icon": "10n"
+    }
+  ],
+  "base": "stations",
+  "main": {
+    "temp": 8.21,
+    "feels_like": 4.58,
+    "temp_min": 7.28,
+    "temp_max": 9.45,
+    "pressure": 1001,
+    "humidity": 93
+  },
+  "visibility": 10000,
+  "wind": {
+    "speed": 7.2,
+    "deg": 150
+  },
+  "rain": {
+    "1h": 1.41
+  },
+  "clouds": {
+    "all": 100
+  },
+  "dt": 1679472455,
+  "sys": {
+    "type": 2,
+    "id": 2017049,
+    "country": "US",
+    "sunrise": 1679494193,
+    "sunset": 1679538137
+  },
+  "timezone": -25200,
+  "id": 5346462,
+  "name": "Emeryville",
+  "cod": 200
+}
