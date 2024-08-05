@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">CodeChallange</string>
+    <string name="error_unknown">Error Unknown</string>
+    <string name="internet_connection_error">No internet connection</string>
+    <string name="error_code_title">Error code: %d</string>
+    <string name="url_invalid">Can not connect to `%s`, please check it</string>
+</resources>
