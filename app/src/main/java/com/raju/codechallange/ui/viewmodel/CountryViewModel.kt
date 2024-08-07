@@ -1,15 +1,14 @@
 package com.raju.codechallange.ui.viewmodel
 
-import com.raju.codechallange.ui.base.ViewState
 import com.raju.codechallange.domain.exception.BaseException
 import com.raju.codechallange.domain.usecase.country.GetCountryUseCase
 import com.raju.codechallange.network.model.Country
 import com.raju.codechallange.ui.base.BaseViewModel
+import com.raju.codechallange.ui.base.ViewState
 import com.raju.codechallange.ui.base.toBaseException
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.update
 import javax.inject.Inject
 
@@ -43,8 +42,10 @@ class CountryViewModel @Inject constructor(
                             countryList = countryList
                         )
                     }
+                }.onFailure { throwable ->
+                    println("Raju Error: $throwable")
+                    showError(throwable.toBaseException())
                 }
-                .onFailure { throwable -> showError(throwable.toBaseException()) }
         }
     }
 

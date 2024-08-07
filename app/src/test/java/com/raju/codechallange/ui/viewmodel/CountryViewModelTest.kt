@@ -25,6 +25,7 @@ class CountryViewModelTest : MockkUnitTest() {
     @Before
     override fun onCreate() {
         super.onCreate()
+        viewModel = CountryViewModel(getCountryUseCase)
     }
 
     @Test
@@ -51,7 +52,7 @@ class CountryViewModelTest : MockkUnitTest() {
         coEvery { getCountryUseCase.invoke() } returns Result.success(countryList)
 
         // When
-        viewModel = CountryViewModel(getCountryUseCase)
+        //viewModel = CountryViewModel(getCountryUseCase)
 
         // Then
         val state = viewModel.state.first()
@@ -68,7 +69,7 @@ class CountryViewModelTest : MockkUnitTest() {
         coEvery { getCountryUseCase.invoke() } returns Result.failure(exception)
 
         // When
-        viewModel = CountryViewModel(getCountryUseCase)
+        //viewModel = CountryViewModel(getCountryUseCase)
 
         // Then
         val state = viewModel.state.first()
@@ -81,7 +82,7 @@ class CountryViewModelTest : MockkUnitTest() {
     @Test
     fun `hideLoading should update state to not loading`() = runTest {
         // Given
-        viewModel = CountryViewModel(getCountryUseCase)
+        //viewModel = CountryViewModel(getCountryUseCase)
 
         // When
         viewModel.hideLoading()
