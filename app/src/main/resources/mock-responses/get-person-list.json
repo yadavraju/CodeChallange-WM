@@ -1,0 +1,39 @@
+{
+  "people": [
+    {
+      "name": "Russ",
+      "language": "swift"
+    },
+    {
+      "name": "Wes",
+      "language": "dart"
+    },
+    {
+      "name": "Tania",
+      "language": "kotlin"
+    },
+    {
+      "name": "Robert",
+      "language": "kotlin"
+    },
+    {
+      "name": "Leilah",
+      "language": "swift"
+    },
+    {
+      "name": "Bastien",
+      "language": "swift"
+    },
+    {
+      "name": "Alan",
+      "language": "swift"
+    },
+    {
+      "name": "Lee",
+      "language": "swift"
+    },
+    {
+      "name": "Margie"
+    }
+  ]
+}

@@ -6,7 +6,3 @@ The goal of the sample is to showcase the current UI capabilities of Compose.
 - Hilts for DI
 - Retrofit for network
 - Added unit test for viewModel, use-case, repository Api class
-
-### Demo
-
-![Structure](screenshot/demo.png "Data flow")

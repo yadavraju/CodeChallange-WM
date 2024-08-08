@@ -1,7 +1,7 @@
 package com.raju.codechallange.di
 
-import com.raju.codechallange.data.CountryRepositoryImpl
-import com.raju.codechallange.domain.repository.CountryRepository
+import com.raju.codechallange.data.PersonRepositoryImpl
+import com.raju.codechallange.domain.repository.PersonRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -12,6 +12,6 @@ import dagger.hilt.components.SingletonComponent
 abstract class RepositoryModule {
 
     @Binds
-    abstract fun countryRepository(emojiRepositoryImpl: CountryRepositoryImpl): CountryRepository
+    abstract fun personRepository(personRepositoryImpl: PersonRepositoryImpl): PersonRepository
 
 }
